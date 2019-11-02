@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">IMC</string>
+    <string-array name="cidade">
+        <item>"Divinopolis"</item>
+        <item>"Bom Despacho"</item>
+        <item>"Itaúna"</item>
+    </string-array>
+</resources>
