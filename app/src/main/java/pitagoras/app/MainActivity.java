@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Contato> contatos;
     private ContatoAdapter adapter;
 
+    Random random = new Random();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Contato getRandomElement() {
-        Random random = new Random();
         Contato contato = contatos.get(random.nextInt(contatos.size()));
 
         //Hora atual do sistema

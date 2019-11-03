@@ -24,6 +24,7 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.ViewHold
 
     // controla a seleção
     private int checkedPosition = -1;
+    private View itemSelected = null;
 
     public ContatoAdapter(Context context, List<Contato> contatos){
         this.context = context;
@@ -45,22 +46,20 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.ViewHold
         viewHolder.txtMensagem.setText(contato.getMensagem());
         viewHolder.txtHoras.setText(contato.getHoras());
 
-        if(checkedPosition == i){
-            viewHolder.itemView.setBackgroundColor(Color.parseColor("#6bd1e8"));
-        }else{
-            viewHolder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }
-
         viewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(checkedPosition == i) {
                     resetSelected();
-                    view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    view.setBackgroundColor(Color.TRANSPARENT);
                 } else {
+                    if(itemSelected != null) {
+                        itemSelected.setBackgroundColor(Color.TRANSPARENT);
+                    }
+                    view.setBackgroundColor(Color.parseColor("#6bd1e8"));
                     checkedPosition = i;
+                    itemSelected = view;
                 }
-                notifyDataSetChanged();
 
             }
         });
