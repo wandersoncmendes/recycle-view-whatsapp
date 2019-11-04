@@ -75,6 +75,8 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.ViewHold
     }
 
     public void resetSelected() {
+        itemSelected.setBackgroundColor(Color.TRANSPARENT);
+        itemSelected = null;
         checkedPosition = -1;
     }
 

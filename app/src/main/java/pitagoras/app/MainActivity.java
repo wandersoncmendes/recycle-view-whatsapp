@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private ContatoAdapter adapter;
 
     Random random = new Random();
+
+    public static List<Contato> staticListForRandon = new ArrayList<Contato>(
+            Arrays.asList(new Contato("fulano", "teste", "20:00"),
+            new Contato("beltrano", "mensagem legal", "15:00"),
+            new Contato("ciclano", "teste novamente", "23:00")));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +59,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+//                if(contatos.size() == 0) {
+//                    contatos = new ArrayList<>();
+//                }
                 contatos.add(getRandomElement());
+
                 adapter.notifyDataSetChanged();
             }
         });
@@ -67,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Nenhum item selecionado!", Toast.LENGTH_SHORT).show();
                 } else {
                     contatos.remove(position);
-                    adapter.notifyDataSetChanged();
                     adapter.resetSelected();
+                    adapter.notifyDataSetChanged();
                 }
             }
         });
@@ -76,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Contato getRandomElement() {
-        Contato contato = contatos.get(random.nextInt(contatos.size()));
+        Contato contato = staticListForRandon.get(random.nextInt(staticListForRandon.size()));
 
         //Hora atual do sistema
         Date date = Calendar.getInstance().getTime();
